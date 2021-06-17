@@ -3,6 +3,12 @@ from PIL import Image
 from array import *
 from random import shuffle
 
+# 阅读ReadME即可
+# 大意为区分测试集和训练集后，将图片放进属于其分类的文件夹中
+# 如dogs的图片放进 training-images/0/ 和 test-images/0/，猫放进 ./1/
+# 然后修改batches.meta.txt内的标签名，按顺序一一对应，默认为dogs;cats（也就是0；1）
+# 最后运行这个python文件
+
 # Load from and save to
 Names = [['./training-images','train'], ['./test-images','test']]
 
@@ -21,8 +27,9 @@ for name in Names:
 	shuffle(FileList) # Usefull for further segmenting the validation set
 
 	for filename in FileList:
-
-		label = int(filename.split('/')[2])
+		#print(filename)
+		#print(filename.split('\\'))
+		label = int(filename.split('\\')[1])
 
 		Im = Image.open(filename)
 
